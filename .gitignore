@@ -304,3 +304,19 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+
+#Entorno Virtual Python
+venv/                   
+
+#Archivos Adicionales
+main.aux
+main.bbl
+main.blg    
+main.bcf
+main.lof
+main.log
+main.lot
+main.out
+main.run.xml
+main.synctex.gz
+main.toc

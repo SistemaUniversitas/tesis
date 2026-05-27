@@ -1,8 +1,175 @@
-\blindtext \cite{WinNT}
-\subsection{ddddd}
-\shortlorem
+\subsection{Marco Teórico}
 
-\subsubsection{sisisi}\shortlorem
+El presente estudio se apoya en un marco teórico que combina la teoría del aprendizaje basado en
+competencias, la analítica del aprendizaje y la minería de datos educativos, como enfoques que permiten
+comprender cómo los datos académicos pueden utilizarse para mejorar el desarrollo de competencias y la
+toma de decisiones en la educación superior. Desde la perspectiva del aprendizaje por competencias, el
+rendimiento académico no se mide únicamente por la acumulación de conocimientos, sino por la capacidad
+del estudiante para aplicar saberes en contextos reales. Según Tobón, las competencias representan la
+integración entre el saber, el hacer y el ser, y constituyen la base para la evaluación educativa moderna
+\cite{tobon2013formacion}. Este campo emergente permite a las instituciones identificar patrones de éxito, riesgo o mejora en
+el aprendizaje a partir de grandes volúmenes de información educativa. En este sentido, la incorporación
+de técnicas de minería de datos educativos fortalece la capacidad de generar modelos predictivos y
+diagnósticos de desempeño, transformando los registros académicos en conocimiento útil. De acuerdo
+con Cobo y Moravec, el uso de herramientas analíticas permite tomar decisiones basadas en evidencia,
+potenciando la calidad educativa mediante la gestión del conocimiento institucional \cite{cobo2011aprendizaje}.
 
-\paragraph{didididi} \shortlorem
+En un nivel teórico más amplio, la teoría sociocognitiva de Bandura y el constructivismo de Vygotsky
+sirven como base para comprender cómo el aprendizaje se desarrolla mediante la interacción entre el
+individuo, el entorno y los recursos educativos disponibles. Estas teorías sostienen que el aprendizaje es un
+proceso activo, social y contextual, lo cual respalda el enfoque del sistema de información propuesto: un
+entorno donde los datos no solo se recolectan, sino que se interpretan a la luz de las condiciones individuales
+y colectivas del estudiante. En conjunto, este marco teórico proporciona una visión integral que combina la
+medición objetiva del aprendizaje (competencias), la interpretación basada en datos (analítica y minería
+educativa) y la comprensión social del conocimiento (constructivismo). Con ello, se busca que el sistema
+de información propuesto no solo prediga el rendimiento entre las pruebas Saber~11 y Saber~Pro, sino que
+también oriente estrategias institucionales para fortalecer el desarrollo de competencias y reducir brechas
+académicas.
+
+\subsection{Marco Conceptual}
+
+Explorando el contexto de la investigación en Colombia, la evaluación de las competencias que presenta un
+estudiante se estructura en torno a los instrumentos estandarizados diseñados por el Instituto Colombiano
+para la Evaluación de la Educación (ICFES). La prueba Saber~11, aplicada al finalizar la educación media
+o bachillerato, permite medir las habilidades y conocimientos que los estudiantes han adquirido en áreas
+como Lectura crítica, Matemáticas, Ciencias naturales, Sociales y ciudadanas, e Inglés \cite{icfes2024_informeSaber11_2023}. Por su
+parte, la prueba Saber~Pro evalúa el desarrollo de competencias genéricas y específicas alcanzadas durante
+la formación universitaria, proporcionando un marco de referencia que funciona a nivel nacional para valorar
+la calidad del proceso formativo de las instituciones de educación superior \cite{sapiencia2022_infographicBestSaberPro}. Ambas pruebas, al ser
+de carácter obligatorio y comparables en el tiempo, constituyen una fuente de información esencial para
+estudiar la continuidad y/o evolución de las habilidades académicas a lo largo del proceso educativo.
+
+Existe un fenómeno conocido como ``valor agregado educativo'', entendido como el progreso o ganancia
+en el nivel de competencias que experimenta el estudiante entre dos momentos de su trayectoria formativa,
+y es precisamente el análisis de los resultados obtenidos en estas pruebas el que permite comprender este
+valor agregado. El artículo ``El valor agregado como medida de la calidad educativa en instituciones de
+educación superior en Colombia'' \cite{maestre2022_valorAgregadoCalidadEducativa}, de la Universidad del Norte, plantea que este indicador permite
+estimar el aporte que realiza la institución al aprendizaje del estudiante, considerando su punto de partida
+y su contexto socioeconómico. Dicho valor no mide únicamente resultados finales, sino la diferencia entre
+el desempeño alcanzado y aquel que sería esperado según las condiciones iniciales.
+
+La medición del valor agregado se apoya en modelos predictivos que estiman el puntaje esperado en
+Saber~Pro a partir de variables como los resultados de Saber~11, los antecedentes académicos y los factores
+contextuales del estudiante. Por ejemplo, el estudio ``Predicción rendimiento estudiantes pruebas Saber Pro
+en pandemia junto con las características socioeconómicas'' propone el uso de algoritmos de minería de
+datos ---como árboles de decisión y regresión logística--- para generar anticipaciones al desempeño final;
+de esta forma, la diferencia entre el puntaje real y el valor pronosticado constituye una medida cuantitativa
+del valor agregado \cite{vanegas2022_prediccionSaberPro}.
+
+Es importante delimitar los factores a examinar; así, el modelo conceptual considera la relación entre tres
+grandes conjuntos de variables: las competencias iniciales, representadas por los puntajes en Saber~11;
+las competencias terminales, representadas por los puntajes en Saber~Pro; y los factores socioeconómicos
+y de contexto que influyen en dicha relación. Se parte del supuesto de que las competencias evaluadas en
+Saber~11 constituyen la base cognitiva sobre la cual se desarrollan las competencias en la educación
+superior, por lo que un mejor desempeño en la prueba Saber~11 se asocia con un mayor potencial de
+aprendizaje y un mejor resultado en Saber~Pro. Sin embargo, esta relación no se produce de manera
+aislada, sino que se ve mediada por condiciones socioeconómicas, contextuales e institucionales que
+moldean la trayectoria de cada estudiante.
+
+Entre los factores contextuales más relevantes se encuentran el nivel socioeconómico, la escolaridad de
+los padres, el tipo de institución educativa de procedencia, el acceso a recursos tecnológicos y la
+localización geográfica del estudiante. Un entorno familiar con mayores recursos educativos y económicos
+tiende a ofrecer más oportunidades de aprendizaje, lo que se traduce en mejores desempeños en las pruebas
+estandarizadas. De igual forma, los estudiantes provenientes de instituciones privadas o con acceso a
+herramientas tecnológicas suelen presentar mejores resultados en Saber~11 y, posteriormente, un progreso
+más sostenido durante su formación superior.
+
+El proceso educativo universitario actúa como mediador entre las competencias iniciales y las finales.
+Dentro de este proceso intervienen factores ligados a la Institución de Educación Superior (IES) como la
+calidad del programa académico, la pertinencia del currículo, las estrategias pedagógicas implementadas,
+la disponibilidad de recursos tecnológicos y el desempeño académico del estudiante, medido mediante
+indicadores como el promedio acumulado (GPA) o el número de asignaturas reprobadas. Estos factores
+reflejan la capacidad de la institución para potenciar las competencias adquiridas en la educación media y
+transformarlas en habilidades profesionales de mayor complejidad. Cabe resaltar que las instituciones con
+procesos consolidados de acreditación y gestión de la calidad presentan un mayor valor agregado en las
+competencias evaluadas, lo que sugiere que la calidad institucional incide directamente en la evolución de
+las habilidades del estudiante \cite{maestre2022_valorAgregadoCalidadEducativa}.
+
+En cuanto a los conceptos metodológicos del trabajo, la regresión lineal es uno de los modelos predictivos
+más utilizados en el aprendizaje automático y la estadística, cuyo objetivo es describir la relación entre
+una variable dependiente continua y una o más variables independientes mediante una función lineal. En
+su forma simple, busca minimizar la suma de los errores cuadráticos entre los valores observados y los
+estimados, lo que la convierte en una herramienta eficaz para evaluar tendencias entre factores como las
+competencias académicas iniciales y los resultados finales \cite{google2025linear}. Este método resulta particularmente
+útil cuando se requiere interpretar el peso o la influencia de cada variable predictora en el resultado,
+permitiendo entender cómo ciertos indicadores de Saber~11 pueden anticipar el rendimiento en Saber~Pro
+\cite{google2025linear}.
+
+Los árboles de decisión representan un método no paramétrico que divide recursivamente el espacio de
+los datos en regiones homogéneas según los valores de las variables predictoras. Cada nodo de decisión
+contiene una regla condicional, y las hojas finales representan los valores de salida estimados. Su principal
+ventaja radica en la capacidad de manejar relaciones no lineales y de ofrecer una interpretación intuitiva
+mediante reglas ``si-entonces'' que facilitan la comprensión del modelo por parte de actores institucionales
+\cite{mienye2023survey}. Además, pueden extenderse a técnicas como los bosques aleatorios (\textit{Random Forests})
+o los \textit{Gradient Boosted Trees}, que mejoran su rendimiento reduciendo la varianza de los modelos
+individuales \cite{mienye2023survey}.
+
+El algoritmo de los $k$ vecinos más cercanos (KNN) se basa en la proximidad o similitud entre
+observaciones. Este enfoque asume que las instancias cercanas en el espacio de características tienden a
+compartir valores similares de la variable objetivo. Para una nueva muestra, el modelo calcula las distancias
+a todas las observaciones existentes y asigna la predicción en función del promedio o la moda de los $k$
+vecinos más cercanos \cite{bhatia2010survey}. KNN no requiere un entrenamiento paramétrico complejo, lo que lo
+convierte en una técnica flexible y útil en contextos educativos donde el número de variables y patrones
+puede ser diverso \cite{bhatia2010survey}.
+
+Dentro del proceso de evaluación de modelos predictivos, el Error Cuadrático Medio de la Raíz (RMSE,
+por sus siglas en inglés) es una métrica ampliamente empleada para medir la precisión del modelo. Se
+define como la raíz cuadrada de la media de los errores al cuadrado, proporcionando una medida del error
+promedio en las mismas unidades que la variable dependiente \cite{hodson2022rmse}. Cuanto menor sea el RMSE, mayor
+será la precisión del modelo. En contextos de predicción educativa, esta métrica permite cuantificar de
+forma directa la diferencia entre el desempeño real y el estimado de los estudiantes \cite{hodson2022rmse}.
+
+El coeficiente de determinación ($R^{2}$) complementa el RMSE al medir la proporción de la varianza
+total explicada por el modelo. Su valor varía entre 0 y 1, donde valores cercanos a 1 indican un ajuste
+adecuado del modelo y una alta capacidad explicativa. Este indicador es esencial para analizar la calidad
+de los modelos de regresión lineal y no lineal, pues permite estimar qué tanto del rendimiento académico
+puede atribuirse a los factores considerados en el modelo \cite{chicco2021r2}.
+
+El preprocesamiento de datos es una etapa crítica para garantizar la validez y la fiabilidad del análisis.
+Comprende tareas como la imputación de valores faltantes, la codificación de variables categóricas y la
+normalización de escalas. La literatura enfatiza que una depuración adecuada de los datos contribuye a
+mejorar el rendimiento de los algoritmos y reduce sesgos en los resultados \cite{han2022data}. En particular, el uso
+de bibliotecas como Pandas, NumPy y Scikit-learn en Python permite automatizar estos procesos,
+asegurando consistencia y reproducibilidad \cite{han2022data}.
+
+En el contexto del aprendizaje automático aplicado a la educación, el campo de \textit{Educational Data
+	Mining} (EDM) ha demostrado que los algoritmos supervisados como la regresión, los árboles de decisión
+y KNN son útiles para predecir el rendimiento de los estudiantes y detectar factores de riesgo académico
+\cite{ozyurt2023educational}. Diversos estudios han resaltado la importancia de combinar estos modelos con métricas de
+evaluación objetivas y sistemas de visualización interactivos para facilitar la interpretación de los resultados
+por parte de los tomadores de decisiones institucionales \cite{ozyurt2023educational}.
+
+Finalmente, la visualización y los sistemas de información educativos permiten traducir los resultados de
+los modelos predictivos en herramientas accesibles para la gestión académica. Los tableros de control
+(\textit{dashboards}) y reportes automatizados facilitan la comprensión de patrones de rendimiento,
+fomentando la toma de decisiones basada en datos \cite{alamri2021explainable}. La implementación de un sistema de
+información predictivo y comparativo permitirá optimizar el análisis del desempeño académico
+institucional, fortaleciendo la planeación y las estrategias de mejora \cite{alamri2021explainable}.
+
+De este modo, se observa que la educación es un proceso acumulativo en el que las competencias previas,
+las condiciones contextuales y las oportunidades institucionales interactúan para definir el desarrollo
+académico del estudiante. Por ello, la comprensión de estas interrelaciones es esencial para diseñar
+estrategias de intervención educativa, orientar políticas institucionales y fortalecer los procesos de
+formación, evaluación y seguimiento de los resultados de aprendizaje.
+
+\subsection{Estado del Arte}
+
+En los últimos años, diversos trabajos en Colombia han explorado directamente la predicción del desempeño
+en Saber~Pro y la relación entre Saber~11 y Saber~Pro. En 2024, J. Mendieta López \cite{mendieta2024modelo} desarrolló
+un modelo descriptivo y predictivo para optimizar la mejora en las pruebas Saber~Pro, empleando datos
+históricos y caracterización estudiantil para identificar los factores que más influyen en el rendimiento
+académico. Otro análisis, el de D. Martínez Cervera en 2021 \cite{cervera2021modelo}, utilizó algoritmos como Naive
+Bayes y $k$-Nearest Neighbors para predecir resultados de Saber~Pro, encontrando que variables como
+el nivel educativo de la madre, la composición familiar, la residencia y el equipamiento doméstico tienen
+peso significativo en el desempeño.
+
+Asimismo, el estudio de H. Granados López del 2025 \cite{granados2025modelado} aplicó regresión logística multinomial para
+estimar niveles de desempeño de estudiantes universitarios en Saber~Pro en función de variables académicas
+y contextuales. Por su parte, el trabajo de D. Ramírez del Río et al. del 2022 \cite{del2022indice} generó metodologías
+longitudinales para medir valor agregado entre Saber~11 y Saber~Pro, reconociendo la influencia de
+factores como la demanda institucional, el contexto geográfico y los mecanismos de selección. Estos
+estudios recientes muestran que ya existe evidencia concreta de que los datos generados con desempeños
+en Saber~11, combinados con variables adicionales de contexto y académicas, pueden alimentar modelos
+predictivos útiles, lo que refuerza la viabilidad del sistema propuesto y el objetivo de fortalecer
+competencias institucionales.
  
