@@ -1,1 +1,85 @@
-\blindtext
+\input{template/config}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\tablename}{Tabla}
+\captionsetup[table]{
+	format=plain,
+	labelfont=bf,
+	labelsep=colon
+}
+
+
+Los resultados se organizan en dos planos: la capacidad predictiva de los modelos sobre el conjunto de prueba y la cuantificación del valor agregado institucional por competencia y año.
+
+\subsection{Desempeño predictivo de los modelos}
+La Tabla 2 presenta el coeficiente de determinación ($R^2$) obtenido sobre el conjunto de prueba —la cohorte 2018— para los tres modelos en sus dos formas. La red neuronal alcanza la mayor capacidad explicativa en la mayoría de las competencias, con valores que oscilan entre $0,39$ y $0,61$; el error absoluto medio se mantuvo en el rango de $0,05$ a $0,07$ sobre la escala normalizada $[0, 1]$. La excepción es el módulo de Inglés, donde la regresión lineal iguala o supera ligeramente a la red ($R^2 \approx 0,624$ frente a $0,599–0,612$), lo que indica que esa competencia se explica de forma relativamente adecuada mediante una relación lineal y no se beneficia tanto de un modelo de mayor complejidad. El esquema de segmentación \textit{K-means} resultó el menos preciso, en especial en su variante de predicción por promedio del grupo y en la Forma 2.
+
+\begin{table}[!ht]
+	\centering
+	\begin{adjustbox}{max width=\textwidth}
+		\footnotesize
+		\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|}
+			\hline
+			\textbf{Competencia} &
+			\textbf{RNA F1} &
+			\textbf{RNA F2} &
+			\textbf{Reg. lineal F1} &
+			\textbf{Reg. lineal F2} &
+			\textbf{K-means F1} &
+			\textbf{K-means F2} \\ \hline
+			
+			Lógico-cuantitativa & 0,510 & 0,426 & 0,393 & 0,401 & 0,368 & 0,300 \\ \hline
+			Lectora-comunicativa & 0,397 & 0,406 & 0,383 & 0,381 & 0,378 & 0,337 \\ \hline
+			Ciudadana-cívica    & 0,445 & 0,390 & 0,353 & 0,345 & 0,344 & 0,295 \\ \hline
+			Inglés              & 0,599 & 0,612 & 0,624 & 0,624 & 0,600 & 0,536 \\ \hline
+			
+		\end{tabularx}
+	\end{adjustbox}
+	\caption{$R^2$ en el conjunto de prueba por modelo y competencia (Forma 1 / Forma 2).}
+	\label{tab:r2_modelos}
+\end{table}
+
+Un hallazgo central es que la incorporación de variables socioeconómicas (Forma 2) no mejoró de manera significativa la capacidad predictiva de la red respecto de la configuración que solo emplea los puntajes de Saber 11 (Forma 1); de hecho, en las competencias lógico-cuantitativa y ciudadana-cívica el desempeño disminuyó (de $0,510$ a $0,426$ y de $0,445$ a $0,390$, respectivamente). El esquema de segmentación K-means, que selecciona internamente un número de grupos de $256$, evidenció el mismo comportamiento de forma más acentuada, lo que sugiere que el contexto socioeconómico aporta información en esencia marginal una vez conocido el desempeño inicial del estudiante.
+
+\subsection{Valor agregado institucional}
+La Tabla 3 cuantifica el aporte de la institución por competencia y año, entendido como la diferencia entre el desempeño observado en Saber Pro y el esperado a partir de las condiciones de entrada. Los valores son negativos en prácticamente todas las competencias y periodos, con la única excepción del Inglés entre 2016 y 2018. La magnitud del aporte negativo se profundiza de manera marcada a partir de 2019, alcanzando sus valores más bajos entre 2021 y 2023. La cercanía entre el puntaje global oficial y el global calculado en este trabajo confirma la validez del procedimiento de cálculo adoptado.
+
+\begin{table}[!ht]
+	\centering
+	\begin{adjustbox}{max width=\textwidth}
+		\footnotesize
+		\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|
+				>{\centering\arraybackslash}X|}
+			\hline
+			\textbf{Año} &
+			\textbf{Lógico-cuant.} &
+			\textbf{Lectora-com.} &
+			\textbf{Ciudadana} &
+			\textbf{Inglés} &
+			\textbf{Global} &
+			\textbf{Global calc.} \\ \hline
+			
+			2016 & $-$2,89 & $-$1,76 & $-$1,20 & $+$0,25 & $-$1,88 & $-$1,58 \\ \hline
+			2017 & $-$2,33 & $-$0,63 & $-$2,69 & $+$0,20 & $-$1,64 & $-$1,27 \\ \hline
+			2018 & $-$1,73 & $-$1,17 & $-$2,60 & $+$0,16 & $-$1,01 & $-$0,58 \\ \hline
+			2019 & $-$4,31 & $-$3,05 & $-$4,57 & $-$1,13 & $-$3,08 & $-$2,60 \\ \hline
+			2020 & $-$5,15 & $-$3,24 & $-$3,12 & $-$1,48 & $-$3,92 & $-$2,85 \\ \hline
+			2021 & $-$7,05 & $-$6,03 & $-$6,47 & $-$2,80 & $-$6,11 & $-$5,37 \\ \hline
+			2022 & $-$7,04 & $-$5,44 & $-$6,74 & $-$2,54 & $-$6,72 & $-$5,33 \\ \hline
+			2023 & $-$7,76 & $-$6,67 & $-$8,35 & $-$3,62 & $-$6,67 & $-$6,51 \\ \hline
+			
+		\end{tabularx}
+	\end{adjustbox}
+	\caption{Aporte institucional (valor agregado) por competencia y año.}
+	\label{tab:valor_agregado}
+\end{table}
