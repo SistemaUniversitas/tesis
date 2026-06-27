@@ -1,22 +1,17 @@
 \subsection{Marco Teórico}
 
-El presente estudio se apoya en un marco teórico que combina la teoría del aprendizaje basado en
+El presente estudio combina la teoría del aprendizaje basado en
 competencias, la analítica del aprendizaje y la minería de datos educativos, como enfoques que permiten
 comprender cómo los datos académicos pueden utilizarse para mejorar el desarrollo de competencias y la
 toma de decisiones en la educación superior. Desde la perspectiva del aprendizaje por competencias, el
 rendimiento académico no se mide únicamente por la acumulación de conocimientos, sino por la capacidad
-del estudiante para aplicar saberes en contextos reales. Según Tobón, las competencias representan la
-integración entre el saber, el hacer y el ser, y constituyen la base para la evaluación educativa moderna
-\cite{tobon2013formacion}. Este campo emergente permite a las instituciones identificar patrones de éxito, riesgo o mejora en
-el aprendizaje a partir de grandes volúmenes de información educativa. En este sentido, la incorporación
-de técnicas de minería de datos educativos fortalece la capacidad de generar modelos predictivos y
-diagnósticos de desempeño, transformando los registros académicos en conocimiento útil. De acuerdo
-con Cobo y Moravec, el uso de herramientas analíticas permite tomar decisiones basadas en evidencia,
-potenciando la calidad educativa mediante la gestión del conocimiento institucional \cite{cobo2011aprendizaje}.
+del estudiante para aplicar saberes en contextos reales. Según el estudio realizado por \cite{tobon2013formacion} en el año 2013, las competencias representan la
+integración entre el saber, el hacer y el ser, y constituyen la base para la evaluación educativa moderna. Este campo emergente permite a las instituciones identificar patrones de éxito, riesgo o mejora en el aprendizaje a partir de grandes volúmenes de información educativa. En este sentido, la incorporación de técnicas de minería de datos educativos fortalece la capacidad de generar modelos predictivos y diagnósticos de desempeño, transformando los registros académicos en conocimiento útil. De acuerdo con \cite{cobo2011aprendizaje}, el uso de herramientas analíticas permite tomar decisiones basadas en evidencia,
+potenciando la calidad educativa mediante la gestión del conocimiento institucional.
 
-En un nivel teórico más amplio, la teoría sociocognitiva de Bandura y el constructivismo de Vygotsky
+En un nivel teórico más amplio, la teoría sociocognitiva de Bandura (1977) y el constructivismo de Vygotsky (1978)
 sirven como base para comprender cómo el aprendizaje se desarrolla mediante la interacción entre el
-individuo, el entorno y los recursos educativos disponibles. Estas teorías sostienen que el aprendizaje es un
+individuo, el entorno y los recursos educativos disponibles \cite{banduras1977self} \cite{vygotsky1978mind}. Estas teorías sostienen que el aprendizaje es un
 proceso activo, social y contextual, lo cual respalda el enfoque del sistema de información propuesto: un
 entorno donde los datos no solo se recolectan, sino que se interpretan a la luz de las condiciones individuales
 y colectivas del estudiante. En conjunto, este marco teórico proporciona una visión integral que combina la
@@ -39,11 +34,7 @@ la calidad del proceso formativo de las instituciones de educación superior \ci
 de carácter obligatorio y comparables en el tiempo, constituyen una fuente de información esencial para
 estudiar la continuidad y/o evolución de las habilidades académicas a lo largo del proceso educativo.
 
-Existe un fenómeno conocido como ``valor agregado educativo'', entendido como el progreso o ganancia
-en el nivel de competencias que experimenta el estudiante entre dos momentos de su trayectoria formativa,
-y es precisamente el análisis de los resultados obtenidos en estas pruebas el que permite comprender este
-valor agregado. El artículo ``El valor agregado como medida de la calidad educativa en instituciones de
-educación superior en Colombia'' \cite{maestre2022_valorAgregadoCalidadEducativa}, de la Universidad del Norte, plantea que este indicador permite
+Existe un fenómeno conocido como ``valor agregado educativo'', concepto introducido en la literatura de eficacia escolar por \cite{hanushek1971teacher} (1971) y adoptado en Colombia por el Ministerio de Educación Nacional y el ICFES como indicador del progreso o ganancia en el nivel de competencias que experimenta el estudiante entre dos momentos de su trayectoria formativa, y es precisamente el análisis de los resultados obtenidos en estas pruebas el que permite comprender este valor agregado \cite{icfes2021valoragregado}. La investigación realizada en Colombia por \cite{maestre2022_valorAgregadoCalidadEducativa}, en la Universidad del Norte, plantea que este indicador permite
 estimar el aporte que realiza la institución al aprendizaje del estudiante, considerando su punto de partida
 y su contexto socioeconómico. Dicho valor no mide únicamente resultados finales, sino la diferencia entre
 el desempeño alcanzado y aquel que sería esperado según las condiciones iniciales.
@@ -128,23 +119,14 @@ puede atribuirse a los factores considerados en el modelo \cite{chicco2021r2}.
 El preprocesamiento de datos es una etapa crítica para garantizar la validez y la fiabilidad del análisis.
 Comprende tareas como la imputación de valores faltantes, la codificación de variables categóricas y la
 normalización de escalas. La literatura enfatiza que una depuración adecuada de los datos contribuye a
-mejorar el rendimiento de los algoritmos y reduce sesgos en los resultados \cite{han2022data}. En particular, el uso
-de bibliotecas como Pandas, NumPy y Scikit-learn en Python permite automatizar estos procesos,
-asegurando consistencia y reproducibilidad \cite{han2022data}.
+mejorar el rendimiento de los algoritmos y reduce sesgos en los resultados \cite{han2022data}. En particular, el uso de bibliotecas como Pandas, NumPy y Scikit-learn de Python permite automatizar estos procesos, asegurando consistencia y reproducibilidad \cite{han2022data}.
 
-En el contexto del aprendizaje automático aplicado a la educación, el campo de \textit{Educational Data
-	Mining} (EDM) ha demostrado que los algoritmos supervisados como la regresión, los árboles de decisión
-y KNN son útiles para predecir el rendimiento de los estudiantes y detectar factores de riesgo académico
+En el contexto del aprendizaje automático aplicado a la educación, el campo de \textit{Educational Data Mining} (EDM) ha demostrado que los algoritmos supervisados como la regresión, los árboles de decisión y KNN son útiles para predecir el rendimiento de los estudiantes y detectar factores de riesgo académico
 \cite{ozyurt2023educational}. Diversos estudios han resaltado la importancia de combinar estos modelos con métricas de
 evaluación objetivas y sistemas de visualización interactivos para facilitar la interpretación de los resultados
 por parte de los tomadores de decisiones institucionales \cite{ozyurt2023educational}.
 
-Finalmente, la visualización y los sistemas de información educativos permiten traducir los resultados de
-los modelos predictivos en herramientas accesibles para la gestión académica. Los tableros de control
-(\textit{dashboards}) y reportes automatizados facilitan la comprensión de patrones de rendimiento,
-fomentando la toma de decisiones basada en datos \cite{alamri2021explainable}. La implementación de un sistema de
-información predictivo y comparativo permitirá optimizar el análisis del desempeño académico
-institucional, fortaleciendo la planeación y las estrategias de mejora \cite{alamri2021explainable}.
+A partir de estos conceptos y criterios en conjunto, la visualización y los sistemas de información educativos permiten traducir los resultados de los modelos predictivos en herramientas accesibles para la gestión académica. Los tableros de control (\textit{dashboards}) y reportes automatizados facilitan la comprensión de patrones de rendimiento, fomentando la toma de decisiones basada en datos dado que reflejan dinámicas y tendencias ocultas, que brindan mayor información y precisión al momento de tomar decisiones \cite{alamri2021explainable}. La implementación de un sistema de información predictivo y comparativo permitirá optimizar el análisis del desempeño académico institucional, fortaleciendo la planeación y las estrategias de mejora \cite{alamri2021explainable}.
 
 De este modo, se observa que la educación es un proceso acumulativo en el que las competencias previas,
 las condiciones contextuales y las oportunidades institucionales interactúan para definir el desarrollo
@@ -154,22 +136,7 @@ formación, evaluación y seguimiento de los resultados de aprendizaje.
 
 \subsection{Estado del Arte}
 
-En los últimos años, diversos trabajos en Colombia han explorado directamente la predicción del desempeño
-en Saber~Pro y la relación entre Saber~11 y Saber~Pro. En 2024, J. Mendieta López \cite{mendieta2024modelo} desarrolló
-un modelo descriptivo y predictivo para optimizar la mejora en las pruebas Saber~Pro, empleando datos
-históricos y caracterización estudiantil para identificar los factores que más influyen en el rendimiento
-académico. Otro análisis, el de D. Martínez Cervera en 2021 \cite{cervera2021modelo}, utilizó algoritmos como Naive
-Bayes y $k$-Nearest Neighbors para predecir resultados de Saber~Pro, encontrando que variables como
-el nivel educativo de la madre, la composición familiar, la residencia y el equipamiento doméstico tienen
-peso significativo en el desempeño.
+En los últimos años, diversos trabajos en Colombia han explorado directamente la predicción del desempeño en Saber~Pro y la relación entre Saber~11 y Saber~Pro. En 2024, el  estudio realizado por \cite{mendieta2024modelo} desarrolló un modelo descriptivo y predictivo para optimizar la mejora en las pruebas Saber~Pro, empleando datos históricos y caracterización estudiantil para identificar los factores que más influyen en el rendimiento académico. Otro análisis, realizado por \cite{cervera2021modelo} en 2021, utilizó algoritmos como Naive Bayes y $k$-Nearest Neighbors para predecir resultados de Saber~Pro, encontrando que variables como el nivel educativo de la madre, la composición familiar, la residencia y el equipamiento doméstico tienen peso significativo en el desempeño.
 
-Asimismo, el estudio de H. Granados López del 2025 \cite{granados2025modelado} aplicó regresión logística multinomial para
-estimar niveles de desempeño de estudiantes universitarios en Saber~Pro en función de variables académicas
-y contextuales. Por su parte, el trabajo de D. Ramírez del Río et al. del 2022 \cite{del2022indice} generó metodologías
-longitudinales para medir valor agregado entre Saber~11 y Saber~Pro, reconociendo la influencia de
-factores como la demanda institucional, el contexto geográfico y los mecanismos de selección. Estos
-estudios recientes muestran que ya existe evidencia concreta de que los datos generados con desempeños
-en Saber~11, combinados con variables adicionales de contexto y académicas, pueden alimentar modelos
-predictivos útiles, lo que refuerza la viabilidad del sistema propuesto y el objetivo de fortalecer
-competencias institucionales.
+Asimismo, el estudio hecho por \cite{granados2025modelado} en 2025 aplicó regresión logística multinomial para estimar niveles de desempeño de estudiantes universitarios en Saber~Pro en función de variables académicas y contextuales. Por su parte, el trabajo desarrollado por \cite{del2022indice} en 2022 generó metodologías longitudinales para medir valor agregado entre Saber~11 y Saber~Pro, reconociendo la influencia de factores como la demanda institucional, el contexto geográfico y los mecanismos de selección. Estos estudios recientes muestran que ya existe evidencia concreta de que los datos generados con desempeños en Saber~11, combinados con variables adicionales de contexto y académicas, pueden alimentar modelos predictivos útiles, lo que refuerza la viabilidad del sistema propuesto y el objetivo de fortalecer competencias institucionales.
  
