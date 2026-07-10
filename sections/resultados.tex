@@ -11,7 +11,7 @@
 Los resultados se organizan en dos planos: la capacidad predictiva de los modelos sobre el conjunto de prueba y la cuantificación del valor agregado institucional por competencia y año.
 
 \subsection{Desempeño predictivo de los modelos}
-La Tabla 2 presenta el coeficiente de determinación ($R^2$) obtenido sobre el conjunto de prueba —la cohorte 2018— para los tres modelos en sus dos formas. La red neuronal alcanza la mayor capacidad explicativa en la mayoría de las competencias, con valores que oscilan entre $0,39$ y $0,61$; el error absoluto medio se mantuvo en el rango de $0,05$ a $0,07$ sobre la escala normalizada $[0, 1]$. La excepción es el módulo de Inglés, donde la regresión lineal iguala o supera ligeramente a la red ($R^2 \approx 0,624$ frente a $0,599–0,612$), lo que indica que esa competencia se explica de forma relativamente adecuada mediante una relación lineal y no se beneficia tanto de un modelo de mayor complejidad. El esquema de segmentación \textit{K-means} resultó el menos preciso, en especial en su variante de predicción por promedio del grupo y en la Forma 2.
+La Tabla~\ref{tab:r2_modelos} presenta el coeficiente de determinación ($R^2$) obtenido sobre el conjunto de prueba —la cohorte 2018— para los tres modelos en sus dos formas. La red neuronal alcanza la mayor capacidad explicativa en la mayoría de las competencias, con valores que oscilan entre $0,39$ y $0,61$; el error absoluto medio se mantuvo en el rango de $0,05$ a $0,07$ sobre la escala normalizada $[0, 1]$. La excepción es el módulo de Inglés, donde la regresión lineal iguala o supera ligeramente a la red ($R^2 \approx 0,624$ frente a $0,599–0,612$), lo que indica que esa competencia se explica de forma relativamente adecuada mediante una relación lineal y no se beneficia tanto de un modelo de mayor complejidad. El esquema de segmentación \textit{K-means} resultó el menos preciso, en especial en su variante de predicción por promedio del grupo y en la Forma 2.
 
 \begin{table}[!ht]
 	\centering
@@ -28,10 +28,10 @@ La Tabla 2 presenta el coeficiente de determinación ($R^2$) obtenido sobre el c
 			\textbf{Competencia} &
 			\textbf{RNA F1} &
 			\textbf{RNA F2} &
-			\textbf{Reg. lineal F1} &
-			\textbf{Reg. lineal F2} &
-			\textbf{K-means F1} &
-			\textbf{K-means F2} \\ \hline
+			\textbf{K-means Reg. local F1} &
+			\textbf{K-means Reg. local F2} &
+			\textbf{K-means Media grupal F1} &
+			\textbf{K-means Media grupal F2} \\ \hline
 			
 			Lógico-cuantitativa & 0,510 & 0,426 & 0,393 & 0,401 & 0,368 & 0,300 \\ \hline
 			Lectora-comunicativa & 0,397 & 0,406 & 0,383 & 0,381 & 0,378 & 0,337 \\ \hline
@@ -44,10 +44,10 @@ La Tabla 2 presenta el coeficiente de determinación ($R^2$) obtenido sobre el c
 	\label{tab:r2_modelos}
 \end{table}
 
-Un hallazgo central es que la incorporación de variables socioeconómicas (Forma 2) no mejoró de manera significativa la capacidad predictiva de la red respecto de la configuración que solo emplea los puntajes de Saber 11 (Forma 1); de hecho, en las competencias lógico-cuantitativa y ciudadana-cívica el desempeño disminuyó (de $0,510$ a $0,426$ y de $0,445$ a $0,390$, respectivamente). El esquema de segmentación K-means, que selecciona internamente un número de grupos de $256$, evidenció el mismo comportamiento de forma más acentuada, lo que sugiere que el contexto socioeconómico aporta información en esencia marginal una vez conocido el desempeño inicial del estudiante.
+Un hallazgo central es que la incorporación de variables socioeconómicas (Forma 2) no mejoró de manera significativa la capacidad predictiva de la red respecto de la configuración que solo emplea los puntajes de Saber 11 (Forma 1); de hecho, en las competencias lógico-cuantitativa y ciudadana-cívica el desempeño disminuyó (de $0,510$ a $0,426$ y de $0,445$ a $0,390$, respectivamente. Véase la tabla \ref{tab:r2_modelos}). El esquema de segmentación K-means, que selecciona internamente un número de grupos de $256$, evidenció el mismo comportamiento de forma más acentuada, lo que sugiere que el contexto socioeconómico aporta información en esencia marginal una vez conocido el desempeño inicial del estudiante.
 
 \subsection{Valor agregado institucional}
-La Tabla 3 cuantifica el aporte de la institución por competencia y año, entendido como la diferencia entre el desempeño observado en Saber Pro y el esperado a partir de las condiciones de entrada. Los valores son negativos en prácticamente todas las competencias y periodos, con la única excepción del Inglés entre 2016 y 2018. La magnitud del aporte negativo se profundiza de manera marcada a partir de 2019, alcanzando sus valores más bajos entre 2021 y 2023. La cercanía entre el puntaje global oficial y el global calculado en este trabajo confirma la validez del procedimiento de cálculo adoptado.
+La Tabla~\ref{tab:valor_agregado} cuantifica el aporte de la institución por competencia y año, entendido como la diferencia entre el desempeño observado en Saber Pro y el esperado a partir de las condiciones de entrada. Los valores son negativos en prácticamente todas las competencias y periodos, con la única excepción del Inglés entre 2016 y 2018. La magnitud del aporte negativo se profundiza de manera marcada a partir de 2019, alcanzando sus valores más bajos entre 2021 y 2023. La cercanía entre el puntaje global oficial y el global calculado en este trabajo confirma la validez del procedimiento de cálculo adoptado.
 
 \begin{table}[!ht]
 	\centering
@@ -83,3 +83,409 @@ La Tabla 3 cuantifica el aporte de la institución por competencia y año, enten
 	\caption{Aporte institucional (valor agregado) por competencia y año.}
 	\label{tab:valor_agregado}
 \end{table}
+
+
+
+\subsection{Caso de estudio: Universidad San Buenaventura}
+Este caso de estudio particulariza el análisis sobre el subconjunto de pares emparejados cuyo registro de Saber Pro corresponde a la Universidad de San Buenaventura, identificado mediante el indicador de institución objetivo descrito en la Metodología. Su propósito es trasladar los resultados agregados del sistema al plano institucional, respondiendo a la pregunta que motiva el proyecto: en qué medida el desempeño observado de los estudiantes bonaventurianos se aparta del que cabría esperar dadas sus condiciones de entrada en Saber 11. Las visualizaciones que acompañan esta subsección provienen del propio tablero interactivo desarrollado, aplicando el filtro institucional sobre sus vistas, de modo que ilustran simultáneamente los hallazgos y la operación del sistema como instrumento de consulta.
+
+El análisis se organiza en tres planos complementarios. El primero es la caracterización descriptiva de la población institucional emparejada, que establece el perfil de los estudiantes de la Universidad en las cuatro competencias análogas y en el puntaje global. El segundo es la evolución comparada de los puntajes entre Saber 11 y Saber Pro para un mismo grupo de estudiantes, que permite visualizar la trayectoria de cada competencia a lo largo de las cohortes disponibles. El tercero es el valor agregado propio de la institución, obtenido como la diferencia entre el desempeño observado y el esperado por el modelo para los estudiantes de la Universidad, examinado por competencia y por año. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/estrato_tipopago_usb.png}
+	\caption{Estrato $\times$ tipo de pago (apilado) - USB.}
+	\label{fig:estrato_tipopago_usb}
+\end{figure}
+
+Gráfico de barras apiladas que cruza el estrato de la vivienda (Estrato 1 a 6 y "Sin Estrato") con la fuente de financiación de los estudios (recursos propios, padres, crédito y beca). El eje vertical cuenta estudiantes. La distribución se concentra en los estratos 2 y 3, donde el financiamiento por parte de los padres y el crédito son las modalidades predominantes, mientras que la beca tiene una presencia menor y decreciente hacia los estratos altos. Caracteriza el contexto socioeconómico de entrada de los estudiantes de la Universidad. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/inse_usb.png}
+	\caption{Índices socioeconómicos, INSE individual (histograma) - USB.}
+	\label{fig:inse_usb}
+\end{figure}
+
+Histograma del Índice de Nivel Socioeconómico individual. 
+El Índice de Nivel Socioeconómico (INSE) es un valor numérico construido por el ICFES que busca representar la posición económica y social de un estudiante, el ICFES lo construye porque el estrato socioeconómico (clasificación por inmueble residencial) no captura completamente el acceso real a bienes y servicios de una familia \cite{icfes2019inse}.
+La métrica es calculada por el ICFES resumiendo información de al menos tres dimensiones, recogidas en los cuestionarios sociodemográficos que acompañan las pruebas Saber: último nivel educativo alcanzado por los padres, ocupación de los padres y dotación del hogar como proxy del ingreso familiar (medida a través de la posesión de bienes y el acceso a servicios como internet, computador, lavadora, horno microondas/gas, automóvil, consola de videojuegos, servicio de televisión, etc) \cite{icfes2019inse}.
+El histograma del INSE está coloreado según los cuatro tramos definidos (Bajo, 0–41,1; Medio-bajo, 41,1–51,2; Medio-alto, 51,2–64,1; Alto, 64,1–100).
+La distribución es aproximadamente normal y se centra en la franja media-alta (moda cercana a un INSE de 55–58), con colas delgadas hacia los extremos. Muestra que la población bonaventuriana se ubica mayoritariamente en niveles socioeconómicos medios. \vspace{4cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/nse_usb.png}
+	\caption{NSE individual (niveles) - USB.}
+	\label{fig:nse_usb}
+\end{figure}
+
+Gráfico de barras que resume el histograma anterior en las cuatro categorías discretas de nivel socioeconómico o NSE, el puntaje INSE (continuo) se usa como insumo para calcular el NSE, una variable categórica de 4 niveles (NSE 1 = más bajo, NSE 4 = más alto) \cite{icfes2019inse}. El nivel 4 (alto) concentra la mayor cantidad de estudiantes, seguido del nivel 2 (medio-bajo); los niveles 1 (bajo) y 3 (medio-alto) son los menos frecuentes. Ofrece una lectura agregada y directa de la composición socioeconómica. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/area_reside_usb.png}
+	\caption{Área de residencia - USB.}
+	\label{fig:area_reside_usb}
+\end{figure}
+
+Gráfico de torta que reparte a los estudiantes entre cabecera municipal (90,3\%, con 14.073 estudiantes) y área rural (9,66\%). Evidencia el carácter marcadamente urbano de la población. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/departamento_usb.png}
+	\caption{Top 10 departamentos de residencia - USB.}
+	\label{fig:departamento_usb}
+\end{figure}
+
+Barras horizontales con los diez departamentos de origen más frecuentes. Valle del Cauca encabeza la distribución, seguido de Antioquia, Bolívar y Bogotá; el resto (Quindío, Cundinamarca, Tolima, Cauca, Sucre y Córdoba) desciende de forma pronunciada. Refleja la cobertura territorial de las sedes de la Universidad. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/municipio_usb.png}
+	\caption{Top 10 municipios de residencia - USB.}
+	\label{fig:municipio_usb}
+\end{figure}
+
+Barras horizontales con los diez municipios más frecuentes. Cali lidera, seguido de Cartagena de Indias, Bogotá D.C., Medellín y Bello; el resto (Armenia, Envigado, Jamundí, Turbaco e Itagüí) presenta volúmenes menores. La presencia de Cali, Cartagena, Medellín/Bello y Bogotá es coherente con la ubicación de las cuatro sedes. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/genero_usb.png}
+	\caption{Género - USB.}
+	\label{fig:genero_usb}
+\end{figure}
+
+Gráfico de torta con la distribución por género: femenino 58,8\% y masculino 41,2\%. Documenta el predominio femenino en la población analizada. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/puntajes_usb.png}
+	\caption{Puntajes por módulo - USB.}
+	\label{fig:puntajes_usb}
+\end{figure}
+
+Panel de seis histogramas (razonamiento cuantitativo, lectura crítica, competencias ciudadanas, inglés, comunicación escrita y puntaje global) que muestran la distribución de los puntajes de Saber Pro. Todas las distribuciones son aproximadamente normales y centradas, salvo comunicación escrita, que presenta una forma bimodal y un pequeño repunte en cero (asociado a los registros atípicos discutidos en la Metodología). Caracteriza el desempeño de salida por competencia. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/niveles_puntajes_usb.png}
+	\caption{Nivel de desempeño por módulo - USB.}
+	\label{fig:niveles_puntajes_usb}
+\end{figure}
+
+Panel de barras que agrupa a los estudiantes por niveles discretos de desempeño en cada módulo. En razonamiento cuantitativo, lectura crítica y competencias ciudadanas la mayoría se ubica en los niveles intermedios 2 y 3; en inglés, la distribución se concentra en A2 y B1 según la escala del MCER, con una porción no despreciable en el nivel -A1 que se conservó deliberadamente; comunicación escrita se concentra en los niveles 2 y 3. Traduce los puntajes continuos a las categorías cualitativas que reporta el ICFES. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/comparativa_puntajes_usb.png}
+	\caption{Tendencia por cohorte - USB.}
+	\label{fig:comparativa_puntajes_usb}
+\end{figure}
+
+Gráficos de líneas que comparan, cohorte por cohorte (2016–2023), el puntaje normalizado promedio de Saber 11 frente a Saber Pro en cada competencia, para la población de la USB. La curva de Saber 11 se mantiene consistentemente por encima de la de Saber Pro, y la brecha entre ambas tiende a ampliarse con el paso de los años, señal de que el desempeño relativo desciende al llegar a la educación superior. Inglés es el caso más favorable, con las dos curvas más próximas entre sí, mientras que en el resto de competencias la separación es más marcada. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/valor_agregado_usb.png}
+	\caption{Aporte institucional por competencia y año - USB.}
+	\label{fig:valor_agregado_usb}
+\end{figure}
+
+Mapa de calor con los años (2016–2023) en las filas y las competencias, el global y el global calculado en las columnas; el color codifica el aporte (verde positivo, naranja-rojo negativo). Tres tarjetas resumen encabezan el gráfico: aporte global promedio de −2,4 puntos, mayor aporte en la Competencia en Inglés (−0,7) y mejor año 2018 (+2,2). El patrón reproduce la Tabla~\ref{tab:valor_agregado}: aporte negativo generalizado, única excepción positiva en Inglés durante 2016–2018 y profundización marcada del aporte negativo desde 2019. Es la síntesis visual del hallazgo central del caso institucional. \vspace{1cm}
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/scatter_densidad_usb.png}
+	\caption{Scatter pareado por módulo - USB.}
+	\label{fig:scatter_densidad_usb}
+\end{figure}
+
+Mapas de densidad que relacionan el puntaje normalizado de Saber 11 (eje x) con el de Saber Pro (eje y) por competencia, para la USB. La nube de puntos se distribuye en diagonal ascendente, confirmando una correlación positiva: quien rinde bien en una prueba tiende a rendir bien en la otra. La relación es más fuerte en Puntaje Global e Inglés ($r \approx 0,68–0,73$), donde la densidad se concentra estrechamente en la diagonal, y más débil en las competencias ciudadana y lectora ($r \approx 0,47–0,48$), con una nube más dispersa. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/matriz_quintiles_usb.png}
+	\caption{Matriz de transición por quintiles - USB.}
+	\label{fig:matriz_quintiles_usb}
+\end{figure}
+
+Panel de seis mapas de calor que muestran, por competencia, el porcentaje de transición entre el quintil de Saber 11 (filas) y el de Saber Pro (columnas), con los porcentajes calculados por fila. La concentración de masa sobre y alrededor de la diagonal indica una persistencia apreciable de la posición relativa del estudiante, más marcada en los quintiles extremos (Q1 y Q5) que en los intermedios. Complementa el análisis de valor agregado con una lectura de movilidad relativa. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/matriz_quintiles_ingles_usb.PNG}
+	\caption{Transición de nivel de desempeño en inglés - USB.}
+	\label{fig:matriz_quintiles_ingles_usb}
+\end{figure}
+
+Mapa de calor de la transición entre el nivel de Saber 11 (filas: A-, A1, A2, B1, B+) y el de Saber Pro (columnas: -A1, A1, A2, B1, B2), en escalas nativas y con porcentajes por fila. La masa se desplaza hacia niveles superiores (por ejemplo, A2 pasa a B1 con 57\%), lo que es consistente con que Inglés sea la única competencia con aporte institucional positivo en los primeros años. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/comparativa_universidades_usb.png}
+	\caption{Comparación general por universidad y competencia - USB.}
+	\label{fig:comparativa_universidades_usb}
+\end{figure}
+
+Gráfico de barras agrupadas que compara el puntaje promedio normalizado (0–1) de las cuatro sedes (Bogotá D.C., Cali, Cartagena y Medellín) en las seis competencias. Los perfiles son similares entre sedes, con Bogotá ligeramente por encima y una ventaja transversal de la Competencia en Inglés en todas ellas. Permite matizar el comportamiento institucional agregado con las diferencias entre sedes. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/tabla_comparativa_univ_usb.png}
+	\caption{Tabla comparativa ejecutiva por universidad - USB.}
+	\label{fig:tabla_comparativa_univ_usb}
+\end{figure}
+
+Tabla que ordena las cuatro sedes por competencia y resalta los valores máximos (verde) y mínimos (naranja), con opción de exportación a CSV. Bogotá D.C. registra los mejores valores en casi todas las columnas (0,52–0,56) y Cartagena los más bajos (0,44–0,50). Es la versión tabular y accionable de la comparación anterior.
+
+
+
+
+\subsection{Caso de estudio: Nacional}
+Este caso de estudio amplía la ventana de análisis al conjunto completo de pares emparejados a nivel nacional, aproximadamente 1,32 millones de registros, que constituye el conjunto sobre el cual se entrenaron y evaluaron los modelos. Su propósito es doble. Por una parte, caracterizar el comportamiento de las competencias en el país: la distribución de los puntajes en ambas pruebas, su evolución por cohorte y las diferencias entre instituciones de educación superior. Por otra, proveer un marco de referencia frente al cual adquiere sentido el caso institucional, el desempeño de la Universidad de San Buenaventura puede interpretarse de forma mas adecuada en relación con el panorama nacional del que forma parte. Al igual que en el caso anterior, las visualizaciones corresponden a vistas del tablero interactivo, aquí sin filtro institucional.
+
+Cabe recordar que tanto las métricas de desempeño predictivo de la Tabla~\ref{tab:r2_modelos} como la matriz de aporte de la Tabla~\ref{tab:valor_agregado} fueron calculadas sobre este conjunto nacional, de modo que los resultados que siguen no reevalúan los modelos, sino que describen los patrones que dichos modelos capturan. \vspace{1cm}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/estrato_tipopago_nacional.png}
+	\caption{Estrato $\times$ tipo de pago (apilado) - Nacional.}
+	\label{fig:estrato_tipopago_nacional}
+\end{figure}
+
+Barras apiladas de estrato de vivienda (1–6 y "Sin Estrato") por fuente de financiación (recursos propios, padres, crédito, beca), eje en millones de estudiantes. La masa se concentra en los estratos 2 y 3; recursos propios y padres dominan y la beca es minoritaria. \vspace{1cm}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/inse_nse_nacional.png}
+	\caption{Índices socioeconómicos, INSE y NSE - Nacional.}
+	\label{fig:inse_nse_nacional}
+\end{figure}
+
+Panel doble: a la izquierda el histograma del INSE individual coloreado por los cuatro tramos (Bajo, Medio-bajo, Medio-alto, Alto), aproximadamente normal y centrado en la franja media; a la derecha, las cuatro categorías como barras, con el nivel 2 (medio-bajo) como el más numeroso. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/area_reside_nacional.png}
+	\caption{Área de residencia - Nacional.}
+	\label{fig:area_reside_nacional}
+\end{figure}
+
+Gráfico de torta que reparte a los estudiantes entre cabecera municipal (88,5\%) y área rural (11,5\%). Evidencia el carácter marcadamente urbano de la población. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/departamento_nacional.png}
+	\caption{Top 10 departamentos de residencia - Nacional.}
+	\label{fig:departamento_nacional}
+\end{figure}
+
+Barras horizontales con los diez departamentos de residencia más frecuentes: Bogotá encabeza, seguido de Antioquia, Valle, Cundinamarca, Atlántico, Santander, Bolívar, Norte de Santander, Tolima y Boyacá (escala hasta ~700k). \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/municipio_nacional.png}
+	\caption{Top 10 municipios de residencia - Nacional.}
+	\label{fig:municipio_nacional}
+\end{figure}
+
+Barras horizontales: Bogotá D.C. domina (~720k), seguido de Medellín, Cali, Barranquilla, Cartagena de Indias, Bucaramanga, Ibagué, Cúcuta, Villavicencio y Pasto. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/genero_nacional.png}
+	\caption{Género - Nacional.}
+	\label{fig:genero_nacional}
+\end{figure}
+
+Gráfico de torta con la distribución por género: 57,6\% femenino y 42,4\% masculino sobre el total nacional. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/puntajes_nacional.png}
+	\caption{Puntajes por módulo - Nacional.}
+	\label{fig:puntajes_nacional}
+\end{figure}
+
+Seis histogramas (razonamiento cuantitativo, lectura crítica, competencias ciudadanas, inglés, comunicación escrita y puntaje global) con la distribución de puntajes de Saber Pro a escala nacional (frecuencias de hasta ~200k–300k). Todas aproximadamente normales, salvo comunicación escrita, bimodal y con repunte en cero por los registros atípicos. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/niveles_puntajes_nacional.png}
+	\caption{Nivel de desempeño por módulo - Nacional.}
+	\label{fig:niveles_puntajes_nacional}
+\end{figure}
+
+Panel de barras que agrupa a los estudiantes por niveles discretos de desempeño en cada módulo. En razonamiento cuantitativo, lectura crítica, competencias ciudadanas y comunicación escrita la mayoría se ubica en los niveles intermedios 2 y 3; en inglés, la distribución se concentra con una mayoría en A2 y un porcentaje importante entre A1 y B1 según la escala del MCER, con una porción no despreciable en el nivel -A1 que se conservó deliberadamente. Traduce los puntajes continuos a las categorías cualitativas que reporta el ICFES. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/comparativa_puntajes_nacional.png}
+	\caption{Tendencia por cohorte - Nacional.}
+	\label{fig:comparativa_puntajes_nacional}
+\end{figure}
+
+Gráficos de líneas que comparan, por cohorte (2016–2023), el puntaje normalizado promedio de Saber 11 frente a Saber Pro en cada competencia, a escala nacional. Al igual que en la USB, Saber 11 se sitúa de forma sostenida por encima de Saber Pro y la brecha tiende a crecer con los años, lo que refleja una caída del rendimiento relativo en la transición a la educación superior. El patrón se mantiene sobre una población mucho más amplia, dándole mayor solidez estadística a la tendencia observada. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/valor_agregado_nacional.png}
+	\caption{Aporte institucional por competencia y año - Nacional.}
+	\label{fig:valor_agregado_nacional}
+\end{figure}
+
+Mapa de calor con los años (2016–2023) en las filas y las competencias, el global y el global calculado en las columnas; el color codifica el aporte (verde positivo, naranja-rojo negativo). Tres tarjetas resumen encabezan el gráfico: aporte global promedio de −3,3 puntos, mayor aporte en la Competencia en Inglés (−1,4) y mejor año 2018 (-0,6). El patrón reproduce la Tabla~\ref{tab:valor_agregado}: aporte negativo generalizado, única excepción positiva en Inglés durante 2016–2018 y profundización marcada del aporte negativo desde 2019. Es la síntesis visual del hallazgo central del caso institucional. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/scatter_densidad_nacional.png}
+	\caption{Scatter pareado por módulo - Nacional.}
+	\label{fig:scatter_densidad_nacional}
+\end{figure}
+
+Mapas de densidad que relacionan el puntaje normalizado de Saber 11 (eje x) con el de Saber Pro (eje y) por competencia, a escala nacional. La nube se dispone en diagonal ascendente, confirmando correlación positiva entre ambas pruebas. La relación es más fuerte en Puntaje Global e Inglés ($r \approx 0,70–0,73$) y más débil en las competencias lectora y ciudadana ($r \approx 0,55$), un patrón coherente con el observado en la USB pero calculado sobre más de un millón de registros, lo que refuerza la fiabilidad de la correlación. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/matriz_quintiles_nacional.png}
+	\caption{Matriz de transición por quintiles - Nacional.}
+	\label{fig:matriz_quintiles_nacional}
+\end{figure}
+
+Seis mapas de calor con la probabilidad de transición entre quintil de Saber 11 (filas) y de Saber Pro (columnas), porcentajes por fila. La masa se concentra sobre y alrededor de la diagonal, con mayor persistencia en los quintiles extremos (Q1 y Q5). \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/matriz_quintiles_ingles_nacional.png}
+	\caption{Transición de nivel de desempeño en inglés - Nacional.}
+	\label{fig:matriz_quintiles_ingles_nacional}
+\end{figure}
+
+Mapa de calor de la transición entre niveles del MCER (filas A-, A1, A2, B1, B+; columnas -A1, A1, A2, B1, B2), con porcentajes por fila y escalas nativas. Se aprecia desplazamiento hacia niveles superiores, por ejemplo, A2 pasa a B1 con un 54\%. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/comparativa_universidades_nacional.png}
+	\caption{Comparación general por universidad y competencia - Nacional.}
+	\label{fig:comparativa_universidades_nacional}
+\end{figure}
+
+Barras agrupadas del puntaje promedio normalizado (0–1) por universidad y competencia, para EAFIT (Medellín), U. de Antioquia (Medellín), EIA (Medellín) y U. de los Andes (Bogotá). Los Andes y EIA encabezan, con ventaja transversal de Inglés en todas. \vspace{1cm}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/tabla_comparativa_univ_nacional.png}
+	\caption{Tabla comparativa ejecutiva - Nacional.}
+	\label{fig:tabla_comparativa_univ_nacional}
+\end{figure}
+
+Tabla que ordena las universidades de mayor desempeño por competencia, resaltando máximos (verde) y mínimos (naranja), con exportación a CSV. U. de los Andes concentra los valores más altos (Inglés 0,71; global 0,63) y U. de Antioquia varios de los más bajos. Versión tabular de la comparación interuniversitaria. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/no_profesionalizacion.png}
+	\caption{No profesionalización -- Resumen general por cohortes.}
+	\label{fig:no_profesionalizacion}
+\end{figure}
+
+Panel doble que grafica las tasas de emparejamiento por cohorte de Saber 11 (2010–2018). A la izquierda, dos series con sus líneas de tendencia: la tasa de no coincidencia (creciente, del $\approx70$\% al $\approx95$\%) y la de coincidencia (decreciente), ambas con ajuste lineal $R^2 = 0,913$. A la derecha, un área apilada con la proporción coincidentes vs no coincidentes año a año. Muestra que la fracción de estudiantes de Saber 11 que llega a emparejarse con Saber Pro disminuye en las cohortes recientes. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma1_ciudadanas.png}
+	\caption{RNA - Forma 1: Competencias Ciudadanas.}
+	\label{fig:rna_forma1_ciudadanas}
+\end{figure}
+
+Resultados del modelo de red neuronal en su Forma 1 (solo puntajes) para Competencias Ciudadanas, evaluado sobre la cohorte de validación final. En la fila superior se muestran las métricas de desempeño: 33.844 estudiantes, MAE de 0,0682, MSE de 0,0074, RMSE de 0,0859, $R^2$ de 0,4451, un sesgo medio ligeramente positivo (+0,0175) y un 0,9\% de outliers. El diagrama de la izquierda enfrenta el valor real (eje x) con el predicho (eje y): la nube de estudiantes se dispone alrededor de la diagonal de predicción perfecta, encerrada por la elipse de confianza al 95\%, con algunos outliers destacados en naranja por encima de la tendencia. A la derecha, el histograma comparativo muestra que la distribución predicha (marrón) queda más concentrada y baja que la real (azul), lo que indica que el modelo tiende a comprimir los valores hacia el centro. El $R^2$ moderado y esa diferencia entre distribuciones confirman que Competencias Ciudadanas es una de las competencias más difíciles de predecir a partir únicamente de los puntajes previos. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma1_razonamiento.png}
+	\caption{RNA - Forma 1: Razonamiento Cuantitativo.}
+	\label{fig:rna_forma1_razonamiento}
+\end{figure}
+
+Resultados del modelo de red neuronal en su Forma 1 (solo puntajes) para Razonamiento Cuantitativo. Incluye las métricas de desempeño (MAE, MSE, RMSE, $R^2$, sesgo y outliers), un gráfico de real contra predicho con elipse de confianza que resume la calidad de la predicción, y la comparación de distribuciones real y predicha. La nube alrededor de la diagonal y un $R^2$ moderado ($\approx 0,51$) indican una capacidad predictiva razonable pero con dispersión apreciable. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma1_global.png}
+	\caption{RNA - Forma 1: Puntaje Global.}
+	\label{fig:rna_forma1_global}
+\end{figure}
+
+Resultados de la Forma 1 para Puntaje Global. Es uno de los casos con mejor desempeño del modelo (MAE bajo y $R^2 \approx 0,58$), con la nube de puntos bien ceñida a la diagonal. El histograma muestra que la distribución predicha reproduce razonablemente la forma de la real, aunque más estrecha, lo que indica que el modelo acierta en el centro pero subestima la variabilidad en los extremos. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma1_ingles.png}
+	\caption{RNA - Forma 1: Inglés.}
+	\label{fig:rna_forma1_ingles}
+\end{figure}
+
+Resultados de la Forma 1 para Inglés. El diagrama real vs. predicho muestra un ajuste comparativamente mejor, con la elipse más alineada a la diagonal y un $R^2$ más alto que en otras competencias, lo que confirma que Inglés es de los módulos donde el modelo predice con mayor fidelidad. El histograma comparativo evidencia, no obstante, que la distribución predicha queda más concentrada que la real. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma1_lectura.png}
+	\caption{RNA - Forma 1: Lectura Crítica.}
+	\label{fig:rna_forma1_lectura}
+\end{figure}
+
+Resultados de la Forma 1 del modelo para Lectura Crítica. Presenta las mismas métricas, el diagrama real vs. predicho con su elipse y el histograma comparativo de distribuciones. El $R^2$ más bajo ($\approx 0,40$) y una nube más aplanada respecto a la diagonal señalan que esta competencia es más difícil de predecir a partir únicamente de los puntajes previos. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma2_ciudadanas.png}
+	\caption{RNA - Forma 2: Competencias Ciudadanas.}
+	\label{fig:rna_forma2_ciudadanas}
+\end{figure}
+
+Resultados de la Forma 2 para Competencias Ciudadanas. Incluye métricas, diagrama real vs. predicho con elipse e histograma comparativo. El $R^2$ relativamente bajo ($\approx 0,39$) y la marcada diferencia entre la distribución real y la predicha revelan que esta competencia sigue siendo difícil de modelar incluso al incorporar variables socioeconómicas. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma2_razonamiento.png}
+	\caption{RNA - Forma 2: Razonamiento Cuantitativo.}
+	\label{fig:rna_forma2_razonamiento}
+\end{figure}
+
+Resultados del modelo en su Forma 2 (puntajes más variables socioeconómicas) para Razonamiento Cuantitativo. Al incorporar el contexto socioeconómico, las métricas y el diagrama real vs. predicho permiten contrastar si esa información adicional mejora o no la predicción respecto a la Forma 1. El histograma comparativo y la elipse ayudan a valorar el ajuste sobre la misma competencia bajo un modelo más rico en variables. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma2_global.png}
+	\caption{RNA - Forma 2: Puntaje Global.}
+	\label{fig:rna_forma2_global}
+\end{figure}
+
+Resultados de la Forma 2 para Puntaje Global. Es de los mejores ajustes del conjunto ($R^2 \approx 0,58$), con la nube bien alineada a la diagonal. Comparado con la Forma 1 del mismo módulo, permite cuantificar el efecto de añadir el contexto socioeconómico sobre la predicción del desempeño global. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma2_ingles.png}
+	\caption{RNA - Forma 2: Inglés.}
+	\label{fig:rna_forma2_ingles}
+\end{figure}
+
+Resultados de la Forma 2 para Inglés. Con las variables socioeconómicas añadidas, el diagrama real vs. predicho y las métricas permiten comparar el ajuste frente a la Forma 1. Es una de las competencias donde el modelo se comporta mejor, por lo que resulta útil observar cuánto margen adicional aporta el contexto socioeconómico sobre un desempeño ya sólido. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/rna_forma2_lectura.png}
+	\caption{RNA - Forma 2: Lectura Crítica.}
+	\label{fig:rna_forma2_lectura}
+\end{figure}
+
+Resultados de la Forma 2 para Lectura Crítica. Muestra las métricas, el diagrama real vs. predicho con elipse y las distribuciones comparadas incorporando las variables socioeconómicas. Sirve para evaluar si el contexto socioeconómico aporta capacidad predictiva en una competencia que en la Forma 1 resultaba de las más difíciles de estimar. \vspace{1cm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/forma1_vs_forma2_mse.png}
+	\caption{Comparación Forma 1 vs Forma 2, MSE por módulo (Test).}
+	\label{fig:forma1_vs_forma2_mse}
+\end{figure}
+
+Gráfico de barras que compara, módulo a módulo, el error cuadrático medio (MSE) de la Forma 1 (solo puntajes) frente a la Forma 2 (puntajes más variables socioeconómicas) sobre el conjunto de prueba. Las diferencias son pequeñas y no uniformes: en algunos módulos la Forma 2 reduce ligeramente el error y en otros lo aumenta. Esto sugiere que el aporte del contexto socioeconómico a la precisión del modelo es marginal y depende de la competencia analizada. \vspace{1cm}
