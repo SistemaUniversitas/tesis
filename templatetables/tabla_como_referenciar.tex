@@ -3,21 +3,17 @@
 }
 
 \renewcommand{\celdados}{ \multicolumn{2}{p{0.625\textwidth} }{\autorescitaciontexto. [1] }  }
-\renewcommand{\celdacin}{  \multirow[t]{5}{0.68\textwidth}{  { \tablereferenciados}  }   }
+\renewcommand{\celdacin}{ \begin{minipage}[t]{0.68\textwidth} \tablereferenciados \end{minipage} }
 
 \newcommand{\tablereferencias}{ Referencia/Reference }
 
 
 \begin{tabular}
-{       >{\centering}p{0.20\textwidth}     p{0.025\textwidth}    p{0.68\textwidth} }
+{       >{\centering\arraybackslash}p{0.20\textwidth}     p{0.025\textwidth}    p{0.68\textwidth} }
 \arrayrulecolor{orange}\toprule
-Citar/How to cite         &                \celdados  \\ 
+Citar/How to cite         &                \celdados  \\
 \cline{1-1}
-\tablereferencias         & [1]          &\celdacin\\ 
-                          &              &            \\
-                          &              &            \\
-Estilo/Style:             &              &            \\ 
-IEEE (2014)               &              &            \\
+\makecell[tl]{\tablereferencias\\[6pt]Estilo/Style:\\IEEE (2014)} & [1] & \celdacin\\
 \bottomrule
 \end{tabular}
 
