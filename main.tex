@@ -306,6 +306,7 @@
 	
 \end{filecontents}
 
+\PassOptionsToPackage{export}{adjustbox}
 \documentclass[12pt]{article} 
 
 \usepackage{booktabs}
@@ -316,6 +317,7 @@
 \usepackage{adjustbox}
 
 \usepackage{graphicx}
+%\usepackage{minted}
 
 \usepackage[letterpaper, margin=2.5cm]{geometry}
 \usepackage[linktoc=all]{hyperref}
@@ -499,21 +501,24 @@
 	\clearpage
 	\section{INTRODUCCIÓN}
 	\input{sections/introduction.tex}
+	\newpage
 	
 	\section{PLANTEAMIENTO DEL PROBLEMA}
 	\input{sections/plante.tex}
 	
 	\section{ANTECEDENTES}
 	\input{sections/antecedentes.tex}
+	\newpage
 	
 	\section{JUSTIFICACIÓN}
 	\input{sections/justificacion.tex}
-
+	\newpage
 	
 	\section{OBJETIVOS}
 	\input{sections/objetivos.tex}
 	\input{sections/objetivo_general.tex}
 	\input{sections/objetivos_especificos.tex}
+	\newpage
 	
 	\section{PROBLEMA DE INVESTIGACIÓN}
 	\input{sections/problema_investigacion.tex}
@@ -523,23 +528,27 @@
 	
 	\section{MARCO REFERENCIAL}
 	\input{sections/marco_teorico.tex}
+	\newpage
 	
 	\section{METODOLOGÍA}
+	%Package array Warning: Column P is already defined on input line 36.
 	\input{sections/metodologia.tex}
+	\newpage
 	
 	\section{RESULTADOS}
 	\input{sections/resultados.tex}
+	\newpage
 	
 	\section{DISCUSIÓN}
 	\input{sections/discusion.tex}
+	\newpage
 	
 	\section{CONCLUSIONES}
 	\input{sections/conclusiones.tex}
+	\newpage
 	
 	\section{RECOMENDACIONES}
 	\input{sections/recomendaciones.tex}
-	
-	
 	
 	\section{ANEXOS}
 	\input{sections/anexos.tex}
